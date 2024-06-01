@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR LOGIC WITH JAVASCRIPT</title>     
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(134, 76, 146);
+        }
+
+        table {
+            width: 100%;
+            max-width: 250px;
+            background-color: rgb(129, 81, 196);
+            border-collapse: separate;
+            border-color: rgb(148, 72, 255);
+            padding: 10px;
+        }
+
+        #result {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            background-color: rgb(255, 254, 254);
+            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+        }
+
+        .num-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: rgb(212, 167, 230);
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .num-btn:hover {
+            background-color: rgb(255, 255, 255);
+            color: black;
+        }
+
+        @media (max-width: 600px) {
+            #result {
+                height: 60px;
+                font-size: 18px;
+            }
+
+            .num-btn {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table border="3">
+        <caption>
+            <h1 style="color: azure;">CALCULATOR APPLICATION</h1>
+        </caption>
+        <tr>
+            <td colspan="3" rowspan="2 "><input type="text" id="result" disabled></td>
+            <td><input type="button" value="C" onclick="clearInput()" class="num-btn"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="Del" onclick="remove()" class="num-btn"></td>
+        </tr>
+        <br />
+        <tr>
+            <td><input type="button" value="7" onclick="appendNumber(7)" class="num-btn"></td>
+            <td><input type="button" value="8" onclick="appendNumber(8)" class="num-btn"></td>
+            <td><input type="button" value="9" onclick="appendNumber(9)" class="num-btn"></td>
+            <td><input type="button" value="/" onclick="divide()" class="num-btn"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="appendNumber(4)" class="num-btn"></td>
+            <td><input type="button" value="5" onclick="appendNumber(5)" class="num-btn"></td>
+            <td><input type="button" value="6" onclick="appendNumber(6)" class="num-btn"></td>
+            <td><input type="button" value="*" onclick="multi()" class="num-btn"></td> 
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="appendNumber(1)" class="num-btn"></td>
+            <td><input type="button" value="2" onclick="appendNumber(2)" class="num-btn"></td>
+            <td><input type="button" value="3" onclick="appendNumber(3)" class="num-btn"></td>
+            <td><input type="button" value="-" onclick="subtract()" class="num-btn"></td>    
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="appendNumber('.')" class="num-btn"></td>
+            <td><input type="button" value="0" onclick="appendNumber(0)" class="num-btn"></td>
+            <td><input type="button" value="=" onclick="calculate()" class="num-btn"></td>
+            <td><input type="button" value="+" onclick="add()" class="num-btn"></td>
+        </tr>
+    </table>
+
+    <script>
+        let currentInput = '';
+        let currentOperator = '';
+        
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator = '';
+            document.getElementById('result').value = '';
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multi() {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function subtract() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }        
+
+        function remove() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;            
+        }
+
+        function calculate() {
+            const result =eval(currentInput);
+            document.getElementById('result').value = result;
+            currentInput = result.toString();
+            currentOperator = '';
+        }
+    </Script>   
+</body>
+</html>
